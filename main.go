@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
+	server "github.com/ramonlimaramos/go-docker/cmd"
 )
 
 func main() {
-
-	fmt.Println("there's something in the world")
+	server.Execute()
 }
