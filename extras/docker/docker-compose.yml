@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+
+  go-docker: &go-docker
+    restart: always
+    container_name: go-docker
+    image: go-docker
+    command: local-dev
+    environment:
+      - ENVIRONMENT=DEVELOPMENT
+    expose:
+      - 80
+    ports: 
+      - "80:80"
+    volumes: 
+      - "./:/usr/src/app"

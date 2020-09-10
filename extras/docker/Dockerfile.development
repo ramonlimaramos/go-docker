@@ -1,0 +1,20 @@
+FROM golang:1.14.9-stretch
+
+ENV APP_DIR=/go/src/github.com/ramonlimaramos/go-docker
+WORKDIR ${APP_DIR}
+
+COPY main.go main.go
+COPY go.mod go.mod
+COPY go.sum go.sum
+COPY cmd cmd
+COPY bin bin
+COPY extras/scripts extras/scripts
+COPY ./entrypoint.sh /
+
+ENV GO111MODULE=on
+RUN go mod download
+
+# go equivalent for whatchdog
+RUN go get github.com/githubnemo/CompileDaemon
+
+ENTRYPOINT ["/entrypoint.sh"]
